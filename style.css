@@ -4,6 +4,7 @@
   --green: #49AA26;
   --light-green: #3DD705;
   --red: #E92929;
+  --light-red: #E9967A;
 }
 
 *{
@@ -34,7 +35,8 @@ body{
 }
 
 .container{
-  width: min(90vw, 800px);
+  /* width: min(90vw, 800px); */
+  width: min(101.25vw, 900px);
   margin: auto;
 }
 
@@ -78,8 +80,9 @@ button:hover{
 }
 
 .button.new{
+  margin-top: 1rem;
   display: inline-block;
-  margin-bottom: .8rem;
+  margin-bottom: 1rem;
 }
 
 .button.cancel{
@@ -103,7 +106,7 @@ button:hover{
 /* ====== HEADER ====== */
 header{
   background: #2D4A22;
-  padding: 2rem 0 10rem;
+  padding: 2rem 0 11.5rem;
   text-align: center;
 }
 
@@ -127,6 +130,7 @@ header{
   background: white;
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
+  box-shadow: 0.5px 0.5px #C0C0C0;
 
   margin-bottom: 2rem;
 
@@ -178,7 +182,7 @@ table tbody tr td:last-child{
 }
 
 table thead th{
-  /*background: white; */
+  /* background: white; */
 
   font-weight: normal;
   padding: 1rem 2rem;
