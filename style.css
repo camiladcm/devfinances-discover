@@ -5,6 +5,7 @@
   --light-green: #3DD705;
   --red: #E92929;
   --light-red: #E9967A;
+  --header-footer: #2D4A22;
 }
 
 *{
@@ -32,6 +33,11 @@ body{
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border-width: 0;
+}
+
+#new-page{
+  position: relative;
+  min-height: 100vh;
 }
 
 .container{
@@ -110,9 +116,10 @@ button:hover{
 
 /* ====== HEADER ====== */
 header{
-  background: #2D4A22;
+  background: var(--header-footer);
   padding: 2rem 0 11.5rem;
   text-align: center;
+  
 }
 
 #logo{
@@ -172,14 +179,28 @@ header{
 #transaction{
   display: block;
   width: 100%;
+  
   overflow-x: auto;
 }
 
 #data-table{
   width: 100%;
+
   border-spacing: 0 0.5rem;
   color: #969CB3;
 }
+
+/* #data-table thead{
+  position: sticky;
+}
+
+#data-table tbody{
+  display: block;
+  height: 300px;
+  
+  overflow-y: auto;
+} */
+
 
 table thead tr th:first-child,
 table tbody tr td:first-child{
@@ -223,6 +244,10 @@ td.income{
 
 td.expense{
   color: #E92929;
+}
+
+.smallTh {
+  width: 5%;
 }
 
 /* ====== MODAL ====== */
@@ -297,11 +322,22 @@ input{
 
 /* ====== FOOTER ====== */
 footer{
-  text-align: center;
-  padding: 4rem 0 2rem;
-  color: var(--dark-blue);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
 
-  opacity: 0.6;
+  display: flex;
+  justify-content: space-between;
+  
+  background: var(--header-footer);
+
+  text-align: center;
+  padding: 1rem 1rem 0.4rem 1rem;
+  color: white;
+  /* color: var(--dark-blue); */
+
+  /* opacity: 0.6; */
 }
 
 /* ====== RESPONSIVE ====== */

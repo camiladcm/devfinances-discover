@@ -1,6 +1,21 @@
 const Modal = {
-  OpenClose() {
+  OpenClose(transactionId = "") {
     document.querySelector('.modal-overlay').classList.toggle("active");
+
+    if (transactionId) {
+      transactionId = Number(transactionId);
+
+      const [transactions] = Transaction.all.filter((transaction) => {
+        return transaction.id == transactionId;
+      });
+
+      Form.setValues(
+        transactions.id,
+        transactions.description,
+        transactions.amount / 100,
+        Utils.formatStringToDate(transactions.date)
+      );
+    }
   }
 }
 
@@ -29,14 +44,25 @@ const Transaction = {
   all: Storage.get(),
 
   add(transaction) {
-    Transaction.all.push(transaction)
+    const identifier = Transaction.all.findIndex((item, index) => {
+      return item.id == transaction.id;
+    });
 
-    App.reload()
+    if (identifier > -1) {
+      Transaction.all.splice(identifier, 1, transaction);
+    } else {
+      Transaction.all.push(transaction);
+    }
+
+    App.reload();
   },
 
-  remove(index) {
-    Transaction.all.splice(index, 1)
+  remove(TransactionId) {
+    const identifier = Transaction.all.findIndex((transaction, index) => {
+      return transaction.id == TransactionId;
+    });
 
+    Transaction.all.splice(identifier, 1)
     App.reload()
   },
 
@@ -47,7 +73,7 @@ const Transaction = {
       if (transaction.amount > 0) {
         income += transaction.amount;
       }
-    })
+    });
     return income;
   },
 
@@ -58,7 +84,7 @@ const Transaction = {
       if (transaction.amount < 0) {
         expense += transaction.amount;
       }
-    })
+    });
     return expense;
   },
 
@@ -67,15 +93,17 @@ const Transaction = {
   }
 }
 
+
+
 const DOM = {
   transactionsContainer: document.querySelector('#data-table tbody'),
 
   addTransaction(transaction, index) {
-    const tr = document.createElement('tr')
-    tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
-    tr.dataset.index = index
+    const tr = document.createElement('tr');
+    tr.innerHTML = DOM.innerHTMLTransaction(transaction, index);
+    tr.dataset.index = index;
 
-    DOM.transactionsContainer.appendChild(tr)
+    DOM.transactionsContainer.appendChild(tr);
   },
 
   innerHTMLTransaction(transaction, index) {
@@ -88,8 +116,11 @@ const DOM = {
     <td class = "${CSSclass}">${amount}</td>
     <td class = "date">${transaction.date}</td>
     <td>
-      <img onclick = "Transaction.remove(${index})" src = "./assets/minus.svg" alt = "Remover transação">
-    </td>    
+      <img onclick = "Modal.OpenClose(${transaction.id})" src = "./assets/plus.svg" alt = "Editar transação">
+    </td>
+    <td>
+      <img onclick = "Transaction.remove(${transaction.id})" src = "./assets/minus.svg" alt = "Remover transação">
+    </td>      
     `
 
     return html
@@ -108,47 +139,54 @@ const DOM = {
 
 const Utils = {
   formatAmount(value) {
-    //   value = Number(value.replace(/\,\./g, "")) * 100
-
-    //   return value
-
-    value = value * 100
-    return Math.round(value)
+    value = Number(value) * 100;
+    return Math.round(value);
   },
 
   formatDate(date) {
-    const splittedDate = date.split("-")
-    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    const splittedDate = date.split("-");
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+  },
+
+  formatStringToDate(sDate) {
+    const splittedDate = sDate.split("/");
+    return `${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`;
   },
 
   formatCurrency(value) {
-    const signal = Number(value) < 0 ? "-" : ""
+    const signal = Number(value) < 0 ? "-" : "";
 
-    value = String(value).replace(/\D/g, "")
-
-    value = Number(value) / 100
+    value = String(value).replace(/\D/g, "");
+    value = Number(value) / 100;
 
     value = value.toLocaleString("pt-BR", {
       style: "currency",
-      currency: "BRL"
-    })
-
+      currency: "BRL",
+    });
     return signal + value
-  }
-
-}
+  },
+};
 
 const Form = {
+  id: document.querySelector('input#id'),
   description: document.querySelector('input#description'),
   amount: document.querySelector('input#amount'),
   date: document.querySelector('input#date'),
 
   getValues() {
     return {
+      id: Form.id.value,
       description: Form.description.value,
       amount: Form.amount.value,
       date: Form.date.value
-    }
+    };
+  },
+
+  setValues(id, description, amount, date, ) {
+    Form.id.value = id;
+    Form.description.value = description;
+    Form.amount.value = amount;
+    Form.date.value = date;
   },
 
   validateFields() {
@@ -160,17 +198,23 @@ const Form = {
   },
 
   formatValues() {
-    let { description, amount, date } = Form.getValues()
+    let { id, description, amount, date } = Form.getValues();
 
-    amount = Utils.formatAmount(amount)
-
+    amount = Utils.formatAmount(amount);
     date = Utils.formatDate(date)
 
+    if (id) {
+      id = Number(id);
+    } else {
+      id = Number(new Date().getTime());
+    }
+
     return {
+      id,
       description,
       amount,
       date
-    }
+    };
   },
 
   clearFields() {

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>dev.finance$</title>
 
+  <link rel="shortcut icon" href="./favicon.png">
   <link rel="stylesheet" href="./style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
@@ -15,92 +16,104 @@
 </head>
 
 <body>
-  <header>
-    <img src="./assets/logo.svg" alt="Logo Dev Finance">
-  </header>
+  <div id="new-page">
 
-  <main class="container">
-    <section id="balance">
-      <h2 class="sr-only">Balanço</h2>
+    <header>
+      <img src="./assets/logo.svg" alt="Logo Dev Finance">
+    </header>
 
-      <div class="card">
-        <h3>
-          <span>Entradas</span>
-          <img src="assets/income.svg" alt="Imagem de Entradas">
-        </h3>
-        <p id="incomeDisplay">R$ 0,00</p>
-      </div>
+    <main class="container">
+      <section id="balance">
+        <h2 class="sr-only">Balanço</h2>
 
-      <div class="card ">
-        <h3>
-          <span>Saídas</span>
-          <img src="assets/expense.svg" alt="Imagem de Saídas">
-        </h3>
-        <p id="expenseDisplay">R$ 0,00</p>
-      </div>
+        <div class="card">
+          <h3>
+            <span>Entradas</span>
+            <img src="assets/income.svg" alt="Imagem de Entradas">
+          </h3>
+          <p id="incomeDisplay">R$ 0,00</p>
+        </div>
 
-      <div class="card total">
-        <h3>
-          <span>Total</span>
-          <img src="./assets/total.svg" alt="Imagem de Total">
-        </h3>
-        <p id="totalDisplay">R$ 0,00</p>
-      </div>
-    </section>
+        <div class="card ">
+          <h3>
+            <span>Saídas</span>
+            <img src="assets/expense.svg" alt="Imagem de Saídas">
+          </h3>
+          <p id="expenseDisplay">R$ 0,00</p>
+        </div>
 
-    <section id="transaction">
-      <h2 class="sr-only">Transações</h2>
+        <div class="card total">
+          <h3>
+            <span>Total</span>
+            <img src="./assets/total.svg" alt="Imagem de Total">
+          </h3>
+          <p id="totalDisplay">R$ 0,00</p>
+        </div>
+      </section>
 
-      <a href="#" onclick="Modal.OpenClose()" class="button new">+ Nova Transação</a>
+      <section id="transaction">
+        <h2 class="sr-only">Transações</h2>
 
-      <table id="data-table">
-        <thead>
-          <tr>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Data</th>
-            <th></th>
-          </tr>
-        </thead>
+        <a href="#" onclick="Modal.OpenClose()" class="button new">+ Nova Transação</a>
 
-        <tbody></tbody>
-      </table>
-    </section>
-  </main>
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th class="smallTh"></th>
+              <th class="smallTh"></th>
+            </tr>
+          </thead>
 
-  <div class="modal-overlay">
-    <div class="modal">
-      <div class="form">
-        <h2>Nova Transação</h2>
-        <form action="" onsubmit="Form.submit(event)">
-          <div class="input-group">
-            <label class="sr-only" for="description">Descrição</label>
-            <input type="text" id="description" name="description" placeholder="Descrição" />
-          </div>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
 
-          <div class="input-group">
-            <label class="sr-only" for="amount">Valor</label>
-            <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00" />
-            <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
-          </div>
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="form">
+          <h2>Nova Transação</h2>
+          <form action="" onsubmit="Form.submit(event)">
+            <div class="input-group" hidden>
+              <label class="sr-only" for="description">Id</label>
+              <input type="text" id="id" name="id" />
+            </div>
 
-          <div class="input-group">
-            <label class="sr-only" for="date">Data</label>
-            <input type="date" id="date" name="date" />
-          </div>
+            <div class="input-group">
+              <label class="sr-only" for="description">Descrição</label>
+              <input type="text" id="description" name="description" placeholder="Descrição" />
+            </div>
 
-          <div class="input-group actions">
-            <a onclick="Modal.close()" href="#" class="button cancel">Cancelar</a>
-            <button>Salvar</button>
-          </div>
-        </form>
+            <div class="input-group">
+              <label class="sr-only" for="amount">Valor</label>
+              <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00" />
+              <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+            </div>
+
+            <div class="input-group">
+              <label class="sr-only" for="date">Data</label>
+              <input type="date" id="date" name="date" />
+            </div>
+
+            <div class="input-group actions">
+              <a onclick="Modal.OpenClose()" href="#" class="button cancel">Cancelar</a>
+              <button id="buttonSave">Salvar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-  <footer>
-    <p>2021 - dev.finance$</p>
-  </footer>
+    <footer>
+      <p>2021: dev.finance$</p>
+      <p>1ª Maratona Discover</p>
+      <p>Por: Camila Marçal</p>
+    </footer>
+
+  </div>
 
   <script src="./scripts.js"></script>
 
