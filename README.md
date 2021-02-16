@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo dev.finances" src="./assets/logo.svg" width="100%">
+  <img alt="logo dev.finances" src="./assets/logo.svg" width="50%">
 </p>
 
 <br>
@@ -28,6 +28,3 @@ Este projeto foi desenvolvido durante a 1ª Maratona Discover da Rocketseat.
 
 - [x] O card com o valor total muda de cor conforme saldo positivo ou negativo.
 - [x] Botão para editar transação
-
-
-Feito por: Camila Marçal
