@@ -59,6 +59,11 @@ a:hover{
   color: var(--light-green);
 }
 
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
 button{
   width: 100%;
   height: 50px;
@@ -155,6 +160,11 @@ header{
 
 .card.total{
   background: var(--green);
+  color: white;
+}
+
+.redCardTotal {
+  background: var(--red) !important;
   color: white;
 }
 

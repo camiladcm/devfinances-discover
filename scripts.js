@@ -1,15 +1,20 @@
 const Modal = {
-  open() {
-    //abrir modal
-    //adicionar a class active ao modal
-    document.querySelector('.modal-overlay').classList.add('active')
-  },
-  close() {
-    //fechar modal
-    //remover a class active do modal
-    document.querySelector('.modal-overlay').classList.remove('active')
+  OpenClose() {
+    document.querySelector('.modal-overlay').classList.toggle("active");
   }
 }
+
+const changeColorCard = {
+  redCard() {
+    const cardTotal = document.querySelector('.card.total');
+
+    if (Transaction.total() < 0) {
+      cardTotal.classList.add('redCardTotal');
+    } else {
+      cardTotal.classList.remove('redCardTotal');
+    }
+  },
+};
 
 const Storage = {
   get() {
@@ -182,7 +187,7 @@ const Form = {
       const transaction = Form.formatValues()
       Transaction.add(transaction)
       Form.clearFields()
-      Modal.close()
+      Modal.OpenClose()
     } catch (error) {
       alert(error.message)
     }
@@ -191,11 +196,12 @@ const Form = {
 
 const App = {
   init() {
-    Transaction.all.forEach(DOM.addTransaction)
+    Transaction.all.forEach(DOM.addTransaction);
 
-    DOM.updateBalance()
+    DOM.updateBalance();
+    changeColorCard.redCard();
 
-    Storage.set(Transaction.all)
+    Storage.set(Transaction.all);
   },
 
   reload() {
