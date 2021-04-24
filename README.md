@@ -29,5 +29,9 @@ This project was developed during the 1st Rocketseat Discover Marathon.
 - [x] The card with the total value changes color according to the positive or negative balance. 
 - [x] Edit transaction button.
 
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 Made by: Camila Marçal
