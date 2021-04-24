@@ -5,29 +5,29 @@
 <br>
 
 <p align="center">
-  <img alt="dev.finances" src="./assets/devfinances.png" width="100%">
+  <img alt="dev.finances" src=".github/devfinances.png" width="100%">
 </p>
 
-## :hammer_and_pick: Tecnologias
+## :hammer_and_pick: Technologies
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+This project was developed using the following technologies:
 
 - HTML
 - CSS
 - JavaScript
 
-## Projeto
+## Project
 
-O dev.finances é uma aplicação de controle financeiro, onde é possível adicionar e excluir transações, ver o saldo de entrada e saída , bem como o balanço total entre elas. 
+dev.finances is a financial control application, where you can add and delete transactions, view the incoming and outgoing balance, as well as the total balance between them. 
 
-## Informações
+## Information
 
-Este projeto foi desenvolvido durante a 1ª Maratona Discover da Rocketseat.
+This project was developed during the 1st Rocketseat Discover Marathon. 
 
-## :heavy_check_mark: Funcionalidades Adicionadas
+## :heavy_check_mark: Additional Features
 
-- [x] O card com o valor total muda de cor conforme saldo positivo ou negativo.
-- [x] Botão para editar transação
+- [x] The card with the total value changes color according to the positive or negative balance. 
+- [x] Edit transaction button.
 
 
-Feito por: Camila Marçal
+Made by: Camila Marçal
