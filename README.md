@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo dev.finances" src="./assets/logo.svg" width="100%">
+  <img alt="logo dev.finances" src="./assets/logo.svg" width="50%">
 </p>
 
 <br>
